@@ -1,0 +1,242 @@
+.about-page {
+  min-height: 100vh;
+  background: var(--light-bg);
+  padding-top: 100px;
+}
+
+.about-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 50px 20px;
+}
+
+.about-hero {
+  text-align: center;
+  margin-bottom: 80px;
+}
+
+/* Creators intro (placed before hero) */
+.creators-intro {
+  margin-bottom: 24px;
+  text-align: center;
+}
+.creators-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 12px;
+}
+.creators-row {
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+.creator-card {
+  width: 160px;
+  background: transparent;
+  padding: 8px;
+  border-radius: 12px;
+  text-align: center;
+}
+.creator-avatar {
+  width: 96px;
+  height: 96px;
+  margin: 0 auto 10px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid var(--primary-color);
+}
+.creator-avatar img { width: 100%; height: 100%; object-fit: cover; }
+.creator-name { font-weight: 600; color: var(--text-dark); }
+.creator-role { font-size: 0.9rem; color: var(--text-gray); }
+
+.about-hero h1 {
+  font-size: 4rem;
+  font-weight: 800;
+  color: var(--text-dark);
+  margin-bottom: 25px;
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-description {
+  font-size: 1.3rem;
+  color: var(--text-gray);
+  line-height: 1.8;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.about-section {
+  margin-bottom: 80px;
+  padding: 50px;
+  background: var(--white);
+  border-radius: 20px;
+  box-shadow: var(--shadow);
+}
+
+.about-section.vision {
+  background: linear-gradient(135deg, rgba(239,177,76,0.05) 0%, rgba(246,59,59,0.05) 100%);
+}
+
+.about-section h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  margin-bottom: 30px;
+}
+
+.about-section p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: var(--text-gray);
+  margin-bottom: 20px;
+}
+
+.how-it-works-detailed {
+  margin-bottom: 80px;
+  text-align: center;
+}
+
+.how-it-works-detailed h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 50px;
+}
+
+.steps-detailed {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 40px;
+}
+
+.step-detailed {
+  background: var(--white);
+  padding: 40px 30px;
+  border-radius: 20px;
+  box-shadow: var(--shadow);
+  transition: transform 0.3s ease;
+}
+
+.step-detailed:hover {
+  transform: translateY(-10px);
+}
+
+.step-number-large {
+  width: 80px;
+  height: 80px;
+  background: var(--primary-color);
+  color: var(--text-light);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin: 0 auto 25px;
+}
+
+.step-detailed h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 15px;
+}
+
+.step-detailed p {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--text-gray);
+}
+
+.founders-section {
+  margin-bottom: 80px;
+}
+
+.founders-section h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.founders-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 40px;
+}
+
+.founder-card {
+  background: var(--white);
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: var(--shadow);
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.founder-card:hover {
+  transform: translateY(-10px);
+}
+
+.founder-image {
+  width: 200px;
+  height: 200px;
+  margin: 0 auto 25px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 5px solid var(--primary-color);
+}
+
+.founder-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.founder-card h3 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 10px;
+}
+
+.founder-role {
+  font-size: 1.1rem;
+  color: var(--primary-color);
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.founder-bio {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--text-gray);
+}
+
+@media (max-width: 768px) {
+  .about-hero h1 {
+    font-size: 2.5rem;
+  }
+
+  .about-section {
+    padding: 30px 20px;
+  }
+
+  .about-section h2 {
+    font-size: 2rem;
+  }
+
+  .steps-detailed {
+    grid-template-columns: 1fr;
+  }
+
+  .founders-grid {
+    grid-template-columns: 1fr;
+  }
+}

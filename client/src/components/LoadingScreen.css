@@ -1,0 +1,116 @@
+.loading-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(227, 57, 14, 0.911) 0%, rgba(246, 59, 59, 0.6) 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  /* keep the loading page visible for 2s then fade out */
+  animation: fadeOut 0.5s ease-out 5s forwards;
+}
+
+.loading-content {
+  text-align: center;
+  color: var(--text-light);
+}
+
+/* 3D circular logo with orbiting food icons */
+.logo-wrap { margin: 0 auto 28px; width: 220px; height: 220px; perspective: 900px; }
+.logo-orbit { position: relative; width: 100%; height: 100%; transform-style: preserve-3d; transform: rotateX(20deg); animation: orbit-spin 2s linear infinite; transform-origin: 50% 50%; }
+.logo-center { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); display: flex; align-items: center; justify-content: center; color: var(--white); font-weight: 800; font-size: 20px; z-index: 20; pointer-events: none; background: transparent; box-shadow: none; width: auto; height: auto; }
+.logo-center .center-utensil { width: 44px; height: 44px; color: var(--white); }
+/* orbit items positioned by index using CSS variable --i */
+.orbit-item {
+  --radius: 86px; /* comfortable orbit radius relative to .logo-wrap (220px) */
+  --angle: calc(var(--i) * 360deg / var(--count));
+  --z: 0px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform-origin: center center;
+  transition: transform 220ms ease;
+}
+.orbit-item svg { width: 36px; height: 36px; color: var(--white); filter: drop-shadow(0 6px 18px rgba(0,0,0,0.32)); }
+/* compute per-item transform using the computed angle and a translateZ for depth */
+.orbit-item { transform: translate(-50%, -50%) rotate(var(--angle)) translateX(var(--radius)) translateZ(var(--z)) rotate(calc(-1 * var(--angle))); }
+.orbit-item:nth-child(odd) { --z: 12px; }
+.orbit-item:nth-child(even) { --z: -6px; }
+
+@keyframes orbit-spin {
+  0% { transform: rotateX(18deg) rotate(0deg); }
+  100% { transform: rotateX(18deg) rotate(360deg); }
+}
+
+/* small floating for center and items to feel alive */
+@keyframes center-float { 0%,100% { transform: translate(-50%, -50%) translateY(0); } 50% { transform: translate(-50%, -48%) translateY(-6px); } }
+/* center stays static — no floating animation per request */
+.logo-center { transform: translate(-50%, -50%); }
+
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+.loading-bar-container {
+  width: 300px;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.813);
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 0 auto 20px;
+}
+
+.loading-bar {
+  height: 100%;
+  background: var(--white);
+  border-radius: 10px;
+  animation: loading 2s ease-in-out;
+  width: 0%;
+}
+
+.loading-text {
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  animation: pulse 1.5s ease-in-out infinite;
+  color: white;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes utensils-slide {
+  0% { transform: translateX(-12px) rotate(-6deg); }
+  45% { transform: translateX(-4px) rotate(-2deg); }
+  50% { transform: translateX(0) rotate(0deg); }
+  55% { transform: translateX(-4px) rotate(-2deg); }
+  100% { transform: translateX(-12px) rotate(-6deg); }
+}
+
+@keyframes loading {
+  0% { width: 0%; }
+  100% { width: 100%; }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+/* keep single fadeOut keyframe (defined later) */

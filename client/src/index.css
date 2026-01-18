@@ -1,0 +1,137 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  /* Primary Colors - Soft Light Gradient (replaces orange) */
+  /* Primary Colors - warm red / gold (matching landing hero) */
+  --primary-color: #F63B3B; /* red */
+  --primary-dark: #9C1818; /* deep red */
+  --primary-light: #EFB14C; /* warm gold */
+  --primary-gradient: linear-gradient(135deg, #EFB14C 0%, #F63B3B 100%);
+  
+  /* Secondary Colors - Muted Teal */
+  --secondary-color: #4FD1C5;
+  --secondary-dark: #2BB6A3;
+  --secondary-light: #9AE6B4;
+  
+  /* Accent Colors - Soft Pastel */
+  --accent-color: #FDE68A;
+  --accent-dark: #FCD34D;
+  
+  /* Success Color - Green (Growth, Success) */
+  --success-color: #6BCB77;
+  --success-dark: #4CAF50;
+  
+  /* Background Colors */
+  --dark-bg: linear-gradient(135deg, #001219 0%, #04263a 100%); /* dark azure gradient for night */
+  --darker-bg: #000814;
+  --light-bg: #FFFFFF; /* light mode background */
+  --white: #FFFFFF;
+  
+  /* Text Colors */
+  --text-dark: #0b0b0f; /* primary text for light mode (dark text) */
+  --text-light: #FFFFFF; /* text color used on dark backgrounds */
+  --text-gray: #6C757D;
+  --text-muted: #95A5A6;
+  
+  /* Border & Dividers */
+  --border-color: #E0E0E0;
+  --border-light: #F0F0F0;
+  
+  /* Shadows */
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  --shadow-hover: 0 15px 40px rgba(0, 0, 0, 0.2);
+  --shadow-soft: 0 5px 15px rgba(0, 0, 0, 0.08);
+  --shadow-glow: 0 0 20px rgba(255,196,3,0.28);
+  
+  /* Transitions */
+  --transition-fast: 0.2s ease;
+  --transition-normal: 0.3s ease;
+  --transition-slow: 0.5s ease;
+  /* Header colors (semi-transparent overlay to keep backdrop blur) */
+  --header-bg: rgba(255,255,255,0.95);
+  --header-text: var(--text-dark);
+}
+
+body {
+  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--light-bg);
+  color: var(--text-dark);
+  overflow-x: hidden;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  font-family: 'Poppins', sans-serif;
+  cursor: pointer;
+  border: none;
+  outline: none;
+}
+
+input, textarea {
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--light-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary-color);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-dark);
+}
+
+/* Dark mode overrides: when the root <html> has the `dark` class we switch
+   core CSS variables so the whole site picks up dark colors using variables. */
+:root.dark {
+  /* Swap backgrounds and primary colors for dark mode */
+  --light-bg: var(--dark-bg); /* many components use var(--light-bg) for background */
+  /* ensure 'white' stays white for icons/text on dark backgrounds */
+  --white: #FFFFFF;
+  /* primary text on dark backgrounds */
+  --text-dark: #FFFFFF;
+  /* secondary/light text (used sparingly) */
+  --text-light: #0b0b0f;
+  --border-color: #123;
+  --border-light: #071019;
+
+  /* shift primary colors for dark theme to deeper azure hues */
+  --primary-color: #60A5FA;
+  --primary-dark: #2563EB;
+  --primary-light: #93C5FD;
+  --primary-gradient: linear-gradient(135deg, #04263a 0%, #064e7a 100%);
+  --header-bg: rgba(4,38,58,0.6);
+  --header-text: var(--text-dark);
+}
+
+/* Ensure body adapts when html.dark is present */
+:root.dark body {
+  background: var(--light-bg);
+  color: var(--text-dark);
+}
+

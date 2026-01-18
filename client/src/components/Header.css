@@ -1,0 +1,245 @@
+.header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: var(--header-bg);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  transition: all 0.3s ease;
+}
+
+.header-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 20px 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: rgb(112, 0, 0);
+  letter-spacing: 2px;
+  transition: transform 0.3s ease;
+}
+
+.logo:hover {
+  transform: scale(1.05);
+}
+
+.nav {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+}
+
+/* make links align with icons */
+.nav a,
+.nav button,
+.nav .join-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.menu-icon {
+  font-size: 1.15rem;
+  display: inline-flex;
+  align-items: center;
+}
+
+.nav a {
+  font-weight: 500;
+  color: rgb(112, 0, 0);
+  transition: color 0.3s ease;
+  position: relative;
+}
+
+.nav a::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: rgb(112, 0, 0);
+  transition: width 0.3s ease;
+}
+
+.nav a:hover {
+  color: rgb(112, 0, 0);
+}
+
+.nav a:hover::after {
+  width: 100%;
+}
+
+.join-link {
+  padding: 10px 25px;
+  background: var(--primary-color);
+  color: var(--text-light) !important;
+  border-radius: 25px;
+  transition: all 0.3s ease;
+}
+
+.join-link::after {
+  display: none;
+}
+
+/* Desktop hover: use warmer accent to match header theme */
+.join-link:hover {
+  /* Light-mode hover: use header accent (deep red) for stronger contrast */
+  background: rgb(112, 0, 0);
+  color: var(--text-light) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(112, 0, 0, 0.18);
+}
+
+.logout-btn {
+  padding: 10px 20px;
+  background: rgba(214, 170, 27, 0.801);
+  color: var(--text-light);
+  border-radius: 25px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.logout-btn:hover {
+  background: rgb(112, 0, 0);
+}
+
+.mobile-menu-toggle {
+  /* hidden by default on larger screens; use !important to avoid overrides */
+  display: none !important;
+  font-size: 1.1rem;
+  background: transparent;
+  border: none;
+  color: var(--header-text);
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+}
+
+@media (max-width: 768px) {
+  .header-container {
+    padding: 15px 20px;
+  }
+
+  .mobile-menu-toggle {
+    display: inline-flex !important;
+  }
+
+  /* On small screens keep toggle visible and to the left of hamburger */
+  .header-actions {
+    gap: 6px;
+  }
+
+  /* Slight spacing tweak so toggle and hamburger sit close but distinct */
+  .header-actions .theme-toggle { margin-right: 2px; }
+
+  .nav {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: var(--header-bg);
+    flex-direction: column;
+    padding: 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transform: translateY(-100%);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+  }
+
+  .nav-open {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .nav a {
+    width: 100%;
+    text-align: center;
+    padding: 15px 0;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  /* Ensure join button matches other items and centers its contents on mobile */
+  .nav .join-link {
+    width: 100%;
+    justify-content: center;
+    padding: 15px 0;
+    border-radius: 6px;
+    margin: 8px 0;
+    background: var(--primary-color);
+  }
+
+  .nav .join-link:hover {
+    /* mobile/menu hover in light mode: keep consistent with desktop hover */
+    background: rgb(112, 0, 0);
+    color: var(--text-light) !important;
+    box-shadow: none;
+    transform: none;
+  }
+
+  .nav a:last-child {
+    border-bottom: none;
+  }
+}
+
+/* Dark mode overrides: ensure logo and mobile hamburger become white */
+.dark .logo,
+.dark .nav a,
+.dark .logout-btn,
+.dark .mobile-menu-toggle {
+  color: var(--white);
+}
+.dark .logout-btn:hover,
+.dark .nav a::after {
+  background: rgba(255, 196, 3, 0.801);
+}
+.dark .nav a:hover {
+  color: rgba(255, 196, 3, 0.801);
+}
+.dark .logout-btn {
+  background: rgba(164, 145, 83, 0.801);
+}
+
+/* Ensure Join button remains visible in dark mode */
+.dark .join-link {
+  background: rgba(164, 145, 83, 0.801);
+  color: var(--text-dark) !important;
+}
+
+.dark .join-link:hover {
+  background: rgba(255, 196, 3, 0.92);
+  color: var(--text-dark) !important;
+}
+
+/* Mobile nav: keep full-width join button legible in dark */
+.dark .nav .join-link {
+  background: rgba(164, 145, 83, 0.801);
+  color: var(--text-dark) !important;
+}
+
+/* More specific dark-mode hover for mobile and desktop to ensure override */
+.dark .nav .join-link:hover,
+.dark .join-link:hover,
+.dark .nav .join-link:focus {
+  background: rgba(255, 196, 3, 0.92) !important;
+  color: var(--text-dark) !important;
+}
