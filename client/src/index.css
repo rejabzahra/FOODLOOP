@@ -121,7 +121,7 @@ input, textarea {
   --border-light: #071019;
 
   /* shift primary colors for dark theme to deeper azure hues */
-  --primary-color: #60A5FA;
+  --primary-color: rgba(255, 196, 3, 0.801);
   --primary-dark: #2563EB;
   --primary-light: #93C5FD;
   --primary-gradient: linear-gradient(135deg, #04263a 0%, #064e7a 100%);

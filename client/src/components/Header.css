@@ -195,12 +195,10 @@
     box-shadow: none;
     transform: none;
   }
-
   .nav a:last-child {
     border-bottom: none;
   }
 }
-
 /* Dark mode overrides: ensure logo and mobile hamburger become white */
 .dark .logo,
 .dark .nav a,
@@ -229,13 +227,11 @@
   background: rgba(255, 196, 3, 0.92);
   color: var(--text-dark) !important;
 }
-
 /* Mobile nav: keep full-width join button legible in dark */
 .dark .nav .join-link {
   background: rgba(164, 145, 83, 0.801);
   color: var(--text-dark) !important;
 }
-
 /* More specific dark-mode hover for mobile and desktop to ensure override */
 .dark .nav .join-link:hover,
 .dark .join-link:hover,

@@ -1,7 +1,11 @@
 .dashboard {
   min-height: 100vh;
-  background: var(--light-bg);
+  background: linear-gradient(135deg, rgba(239, 177, 76, 0.6) 0%, rgba(246, 59, 59, 0.6) 100%);
   padding-top: 100px;
+}
+
+.dashboard.dark {
+  background: linear-gradient(135deg, rgba(47, 8, 103, 0.6) 0%, rgba(147, 28, 28, 0.6) 100%);
 }
 
 .dashboard-container {
@@ -25,6 +29,10 @@
   color: var(--text-dark);
 }
 
+.dashboard.dark .dashboard-header h1 {
+  color: white;
+}
+
 .primary-button {
   padding: 12px 25px;
   background: var(--primary-color);
@@ -39,9 +47,18 @@
 }
 
 .primary-button:hover {
-  background: var(--primary-dark);
+  background: rgb(112, 0, 0);
   transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(246,59,59,0.18);
+  box-shadow: 0 5px 15px rgba(112, 0, 0, 0.18);
+}
+
+.dashboard.dark .primary-button {
+  background: rgba(164, 145, 83, 0.801);
+  color: var(--text-dark);
+}
+
+.dashboard.dark .primary-button:hover {
+  background: rgba(255, 196, 3, 0.92);
 }
 
 .secondary-button {
@@ -102,9 +119,18 @@
   margin-bottom: 30px;
 }
 
+.dashboard.dark .form-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+}
+
 .form-card h2 {
   margin-bottom: 20px;
   color: var(--text-dark);
+}
+
+.dashboard.dark .form-card h2 {
+  color: white;
 }
 
 .form-card form {
@@ -128,10 +154,16 @@
   transition: border-color 0.3s ease;
 }
 
-.form-card input:focus,
-.form-card textarea:focus {
-  outline: none;
-  border-color: var(--primary-color);
+.dashboard.dark .form-card input,
+.dashboard.dark .form-card textarea {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.dashboard.dark .form-card input:focus,
+.dashboard.dark .form-card textarea:focus {
+  border-color: rgba(255, 196, 3, 0.92);
 }
 
 .dashboard-grid {
@@ -147,11 +179,65 @@
   box-shadow: var(--shadow);
 }
 
+.dashboard.dark .dashboard-section {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+}
+
 .dashboard-section h2 {
   font-size: 1.8rem;
   font-weight: 600;
   margin-bottom: 20px;
   color: var(--text-dark);
+}
+
+.dashboard.dark .dashboard-section h2 {
+  color: white;
+}
+
+.stat-card {
+  background: var(--white);
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: var(--shadow);
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-5px);
+}
+
+.stat-card svg {
+  font-size: 3rem;
+  color: var(--primary-color);
+  margin-bottom: 15px;
+}
+
+.stat-card h3 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 10px;
+}
+
+.dashboard.dark .stat-card h3 {
+  color: white;
+}
+
+.stat-card p {
+  color: var(--text-gray);
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+.dashboard.dark .stat-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+.dashboard.dark .stat-card p {
+  color: rgba(255, 255, 255, 0.8);
 }
 
 .cards-grid {
@@ -166,6 +252,12 @@
   border-radius: 12px;
   overflow: hidden;
   transition: all 0.3s ease;
+}
+
+.dashboard.dark .card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-color: rgba(255, 255, 255, 0.2);
 }
 
 .card:hover {
@@ -190,10 +282,18 @@
   color: var(--text-dark);
 }
 
+.dashboard.dark .card-content h3 {
+  color: white;
+}
+
 .card-content p {
   color: var(--text-gray);
   margin-bottom: 15px;
   line-height: 1.6;
+}
+
+.dashboard.dark .card-content p {
+  color: rgba(255, 255, 255, 0.8);
 }
 
 .card-info {
@@ -203,6 +303,10 @@
   margin-bottom: 15px;
   font-size: 0.9rem;
   color: var(--text-gray);
+}
+
+.dashboard.dark .card-info {
+  color: rgba(255, 255, 255, 0.8);
 }
 
 .badge {
@@ -258,9 +362,55 @@
   color: #0066cc;
 }
 
-.badge-admin {
-  background: #e5ffe5;
-  color: #006600;
+.admin-table {
+  background: var(--white);
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+.dashboard.dark .admin-table {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+.admin-table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.admin-table th,
+.admin-table td {
+  padding: 15px;
+  text-align: left;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.admin-table th {
+  background: var(--light-bg);
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+.dashboard.dark .admin-table th {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+.admin-table td {
+  color: var(--text-dark);
+}
+
+.dashboard.dark .admin-table td {
+  color: white;
+}
+
+.admin-table tr:hover {
+  background: var(--light-bg);
+}
+
+.dashboard.dark .admin-table tr:hover {
+  background: rgba(255, 255, 255, 0.05);
 }
 
 .card-actions {
@@ -508,6 +658,10 @@
   color: var(--text-dark);
 }
 
+.dashboard.dark .donation-info h3 {
+  color: white;
+}
+
 .donation-info p {
   margin: 5px 0;
   color: var(--text-gray);
@@ -535,4 +689,62 @@
   .search-bar {
     flex-direction: column;
   }
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: var(--white);
+  padding: 30px;
+  border-radius: 15px;
+  max-width: 500px;
+  width: 90%;
+  box-shadow: var(--shadow);
+}
+
+.dashboard.dark .modal-content {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+.modal-content h2 {
+  margin-bottom: 20px;
+  color: var(--text-dark);
+}
+
+.dashboard.dark .modal-content h2 {
+  color: white;
+}
+
+.modal-content textarea {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  font-size: 1rem;
+  margin-bottom: 20px;
+  resize: vertical;
+}
+
+.dashboard.dark .modal-content textarea {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
 }

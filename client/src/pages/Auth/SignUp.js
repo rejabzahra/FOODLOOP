@@ -3,13 +3,16 @@ import { useParams, useNavigate, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import axios from 'axios';
 import { useAuth } from '../../context/AuthContext';
+import { useTheme } from '../../context/ThemeContext';
 import Header from '../../components/Header';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import './Auth.css';
 
 const SignUp = () => {
   const { role } = useParams();
   const navigate = useNavigate();
   const { login, API_URL } = useAuth();
+  const { theme } = useTheme();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -21,6 +24,8 @@ const SignUp = () => {
   });
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -55,7 +60,7 @@ const SignUp = () => {
   };
 
   return (
-    <div className="auth-page">
+    <div className={`auth-page ${theme}`}>
       <Header />
       <div className="auth-container">
         <motion.div
@@ -93,25 +98,43 @@ const SignUp = () => {
 
             <div className="form-group">
               <label>Password *</label>
-              <input
-                type="password"
-                value={formData.password}
-                onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-                required
-                placeholder="••••••••"
-                minLength={6}
-              />
+              <div className="password-input">
+                <input
+                  type={showPassword ? 'text' : 'password'}
+                  value={formData.password}
+                  onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+                  required
+                  placeholder="••••••••"
+                  minLength={6}
+                />
+                <button
+                  type="button"
+                  className="password-toggle"
+                  onClick={() => setShowPassword(!showPassword)}
+                >
+                  {showPassword ? <FaEye /> : <FaEyeSlash />}
+                </button>
+              </div>
             </div>
 
             <div className="form-group">
               <label>Confirm Password *</label>
-              <input
-                type="password"
-                value={formData.confirmPassword}
-                onChange={(e) => setFormData({ ...formData, confirmPassword: e.target.value })}
-                required
-                placeholder="••••••••"
-              />
+              <div className="password-input">
+                <input
+                  type={showConfirmPassword ? 'text' : 'password'}
+                  value={formData.confirmPassword}
+                  onChange={(e) => setFormData({ ...formData, confirmPassword: e.target.value })}
+                  required
+                  placeholder="••••••••"
+                />
+                <button
+                  type="button"
+                  className="password-toggle"
+                  onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                >
+                  {showConfirmPassword ? <FaEyeSlash /> : <FaEye />}
+                </button>
+              </div>
             </div>
 
             <div className="form-group">

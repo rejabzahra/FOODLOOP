@@ -1,8 +1,16 @@
 .footer {
-  background: var(--dark-bg);
   color: var(--text-light);
   padding: 60px 50px 20px;
   margin-top: 100px;
+  text-align: center;
+}
+
+.footer.light {
+  background: linear-gradient(135deg, rgb(197, 147, 67) 0%, rgb(162, 14, 14) 100%);
+}
+
+.footer.dark {
+  background: linear-gradient(135deg, rgba(47, 8, 103, 0.6) 0%, rgba(147, 28, 28, 0.6) 100%);
 }
 
 .footer-container {
@@ -10,119 +18,108 @@
   margin: 0 auto;
 }
 
-.footer-content {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 40px;
-  margin-bottom: 40px;
-}
-
-.footer-section h3.footer-logo {
-  font-size: 2rem;
-  font-weight: 800;
-  color: var(--primary-color);
+.footer-links {
   margin-bottom: 20px;
-  letter-spacing: 2px;
 }
 
-.footer-section h4 {
-  font-size: 1.3rem;
-  font-weight: 600;
-  margin-bottom: 20px;
-  color: var(--primary-light);
-}
-
-.footer-description {
-  font-size: 1rem;
-  line-height: 1.6;
-  margin-bottom: 15px;
-  opacity: 0.9;
-}
-
-.footer-tagline {
+.footer-links a {
   font-size: 0.9rem;
-  opacity: 0.7;
-  font-style: italic;
-}
-
-.footer-section ul {
-  list-style: none;
-}
-
-.footer-section ul li {
-  margin-bottom: 12px;
-}
-
-.footer-section ul li a {
   color: var(--text-light);
+  margin: 0 15px;
+  text-decoration: none;
   opacity: 0.8;
   transition: all 0.3s ease;
-  display: inline-block;
 }
 
-.footer-section ul li a:hover {
+.footer-links a:hover {
+  color: rgb(112, 0, 0);
   opacity: 1;
-  color: var(--primary-color);
-  transform: translateX(5px);
 }
 
-.contact-list li {
-  margin-bottom: 12px;
+.footer.dark .footer-links a {
+  color: white;
 }
 
-/* Circular icon container with centered icon */
-.contact-icon {
-  color: var(--primary-color);
-  font-size: 1.05rem;
-  width: 36px;
-  height: 36px;
-  margin: 0;
-  flex-shrink: 0;
-  display: inline-flex;
-  align-items: center;
+.footer.dark .footer-links a:hover {
+  color: rgba(255, 196, 3, 0.92);
+}
+
+.footer-icons {
+  margin-bottom: 20px;
+  display: flex;
   justify-content: center;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.03);
-  transition: transform 0.18s ease, color 0.18s ease, background 0.18s ease;
-}
-
-/* Make contact anchors align properly and be full-width if needed */
-.contact-link,
-.contact-location {
-  display: inline-flex;
   align-items: center;
-  gap: 12px;
-  color: inherit;
+}
+
+.footer-icons a {
+  color: white;
+  font-size: 1.5rem;
+  margin: 0 10px;
   text-decoration: none;
-}
-
-/* Hover/focus: fill the circle and slightly lift the icon */
-.contact-link:hover .contact-icon,
-.contact-location:hover .contact-icon,
-.contact-link:focus .contact-icon,
-.contact-location:focus .contact-icon {
-  transform: translateY(-2px) scale(1.05);
-  background: var(--primary-color);
-  color: var(--text-light);
-}
-
-.contact-list a,
-.contact-list span {
-  color: var(--text-light);
   opacity: 0.8;
   transition: opacity 0.3s ease;
 }
 
-.contact-list a:hover {
+.icon-wrapper {
+  display: inline-block;
+  transition: transform 0.3s ease;
+  padding: 8px;
+  border-radius: 8px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer-icons .instagram .icon-wrapper {
+  background: #E4405F;
+}
+
+.footer-icons .email .icon-wrapper {
+  background: #D44638;
+}
+
+.footer-icons .phone .icon-wrapper {
+  background: #25D366;
+}
+
+.footer-icons .facebook .icon-wrapper {
+  background: #1877F2;
+}
+
+.footer-icons .linkedin .icon-wrapper {
+  background: #0077B5;
+}
+
+.footer-icons a:hover {
   opacity: 1;
-  color: var(--primary-color);
+}
+
+.footer-icons a:hover .icon-wrapper {
+  transform: scale(1.2);
+}
+
+.footer-brand {
+  font-size: 4rem;
+  font-weight: bold;
+  color: rgba(255, 196, 3, 0.801);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.footer.dark .footer-brand {
+  color: rgba(255, 196, 3, 0.92);
 }
 
 .footer-bottom {
   text-align: center;
   padding-top: 30px;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
-  opacity: 0.7;
+  opacity: 1;
+  color: white;
 }
 
 @media (max-width: 768px) {
@@ -130,8 +127,16 @@
     padding: 40px 20px 15px;
   }
 
-  .footer-content {
-    grid-template-columns: 1fr;
-    gap: 30px;
+  .footer-links a {
+    display: block;
+    margin: 10px 0;
+  }
+
+  .footer-icons a {
+    margin: 0 5px;
+  }
+
+  .footer-brand {
+    font-size: 3rem;
   }
 }

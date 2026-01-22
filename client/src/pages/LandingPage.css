@@ -448,6 +448,7 @@
 
   .section-title {
     font-size: 2rem;
+    color:rgba(0, 0, 0, 0.3)
   }
 
   .platform-grid {
@@ -456,6 +457,7 @@
 
   .how-it-works {
     flex-direction: column;
+    align-items: center;
   }
 
   .counters-grid {
@@ -481,4 +483,34 @@
 .dark .hero-overlay {
   /* purple/pink overlay gradient for dark mode */
   background: linear-gradient(135deg, rgba(47, 8, 103, 0.6) 0%, rgba(147, 28, 28, 0.6) 100%);
+}
+
+.dark .feature-card h3 {
+  color: black;
+}
+
+.dark .step-card h3 {
+  color: black;
+}
+
+.dark .rating-value {
+  color: black;
+}
+
+.dark .section-title {
+  color: white;
+}
+
+.special-title {
+  color: black !important;
+}
+
+.dark .special-title {
+  color: black !important;
+}
+.dark .submit-button {
+  background: rgba(150, 133, 56, 0.685);
+}
+.dark .submit-button:hover {
+  background: rgba(238, 210, 27, 0.895) !important;
 }

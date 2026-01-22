@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useAuth } from '../../context/AuthContext';
+import { useTheme } from '../../context/ThemeContext';
 import Header from '../../components/Header';
-import { FaTrash, FaUndo, FaChartBar, FaUsers, FaStore, FaClipboardList } from 'react-icons/fa';
+import { FaTrash, FaUndo, FaChartBar, FaUsers, FaStore, FaClipboardList, FaUserPlus, FaHandHoldingHeart, FaMapMarkerAlt, FaBoxOpen, FaArchive, FaClock } from 'react-icons/fa';
 import './Dashboard.css';
 
 const AdminDashboard = () => {
   const { user, API_URL } = useAuth();
+  const { theme } = useTheme();
   const [stats, setStats] = useState(null);
   const [users, setUsers] = useState([]);
   const [donations, setDonations] = useState([]);
@@ -22,31 +24,44 @@ const AdminDashboard = () => {
     try {
       if (activeTab === 'stats') {
         const response = await axios.get(`${API_URL}/admin/stats`);
-        setStats(response.data);
+        setStats(response.data || {});
       } else if (activeTab === 'users') {
         const response = await axios.get(`${API_URL}/admin/users`);
-        setUsers(response.data);
+        setUsers(response.data || []);
       } else if (activeTab === 'donations') {
         const response = await axios.get(`${API_URL}/admin/donations`);
-        setDonations(response.data);
+        setDonations(response.data || []);
       } else if (activeTab === 'logs') {
         const response = await axios.get(`${API_URL}/admin/audit-logs`);
-        setAuditLogs(response.data);
+        setAuditLogs(response.data || []);
       }
     } catch (error) {
       console.error('Error fetching data:', error);
+      if (activeTab === 'stats') {
+        setStats({});
+      } else if (activeTab === 'users') {
+        setUsers([]);
+      } else if (activeTab === 'donations') {
+        setDonations([]);
+      } else if (activeTab === 'logs') {
+        setAuditLogs([]);
+      }
+      if (error.response?.status === 401) {
+        alert('Session expired. Please login again.');
+      }
     } finally {
       setLoading(false);
     }
   };
 
-  const handleRestoreDonation = async (id) => {
+  const handleDeleteUser = async (userId) => {
+    if (!window.confirm('Are you sure you want to delete this user? This action cannot be undone.')) return;
     try {
-      await axios.put(`${API_URL}/admin/donations/${id}/restore`);
+      await axios.delete(`${API_URL}/admin/users/${userId}`);
       fetchData();
-      alert('Donation restored successfully');
+      alert('User deleted successfully');
     } catch (error) {
-      alert('Error restoring donation');
+      alert('Error deleting user');
     }
   };
 
@@ -61,12 +76,23 @@ const AdminDashboard = () => {
     }
   };
 
+  const handleRestoreDonation = async (id) => {
+    if (!window.confirm('Restore this donation?')) return;
+    try {
+      await axios.put(`${API_URL}/admin/donations/${id}/restore`);
+      fetchData();
+      alert('Donation restored successfully');
+    } catch (error) {
+      alert('Error restoring donation');
+    }
+  };
+
   if (loading) {
     return <div className="loading">Loading...</div>;
   }
 
   return (
-    <div className="dashboard">
+    <div className={`dashboard ${theme}`}>
       <Header />
       <div className="dashboard-container">
         <div className="dashboard-header">
@@ -114,26 +140,32 @@ const AdminDashboard = () => {
               <p>Total Users</p>
             </div>
             <div className="stat-card">
+              <FaUserPlus />
               <h3>{stats.donorsJoined?.toLocaleString() || 0}</h3>
               <p>Donors Joined</p>
             </div>
             <div className="stat-card">
+              <FaHandHoldingHeart />
               <h3>{stats.receiversHelped?.toLocaleString() || 0}</h3>
               <p>Receivers Helped</p>
             </div>
             <div className="stat-card">
+              <FaMapMarkerAlt />
               <h3>{stats.citiesCovered || 0}</h3>
               <p>Cities Covered</p>
             </div>
             <div className="stat-card">
+              <FaBoxOpen />
               <h3>{stats.activeDonations || 0}</h3>
               <p>Active Donations</p>
             </div>
             <div className="stat-card">
+              <FaArchive />
               <h3>{stats.totalDonations || 0}</h3>
               <p>Total Donations</p>
             </div>
             <div className="stat-card">
+              <FaClock />
               <h3>{stats.pendingRequests || 0}</h3>
               <p>Pending Requests</p>
             </div>
@@ -151,6 +183,7 @@ const AdminDashboard = () => {
                   <th>Role</th>
                   <th>City</th>
                   <th>Joined</th>
+                  <th>Actions</th>
                 </tr>
               </thead>
               <tbody>
@@ -162,6 +195,14 @@ const AdminDashboard = () => {
                     <td><span className={`badge badge-${u.role}`}>{u.role}</span></td>
                     <td>{u.city || '-'}</td>
                     <td>{new Date(u.createdAt).toLocaleDateString()}</td>
+                    <td>
+                      <button
+                        className="danger-button"
+                        onClick={() => handleDeleteUser(u.id)}
+                      >
+                        <FaTrash /> Delete
+                      </button>
+                    </td>
                   </tr>
                 ))}
               </tbody>

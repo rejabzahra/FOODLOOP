@@ -86,15 +86,15 @@ const ContactUs = () => {
                 </div>
                 <div className="contact-text">
                   <h3>Address</h3>
-                  <p>123 Community Street<br />City, State 12345</p>
+                  <p>Pakistan<br />Gujranwala, Punjab</p>
                 </div>
               </div>
             </div>
 
             <div className="contact-hours">
               <h3>Business Hours</h3>
-              <p>Monday - Friday: 9:00 AM - 6:00 PM</p>
-              <p>Saturday: 10:00 AM - 4:00 PM</p>
+              <p>Monday - Friday: 9:00 AM - 8:00 PM</p>
+              <p>Saturday: 10:00 AM - 6:00 PM</p>
               <p>Sunday: Closed</p>
             </div>
           </motion.div>

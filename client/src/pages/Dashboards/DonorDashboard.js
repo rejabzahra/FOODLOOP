@@ -2,12 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useAuth } from '../../context/AuthContext';
+import { useTheme } from '../../context/ThemeContext';
 import Header from '../../components/Header';
 import { FaPlus, FaCheck, FaTimes, FaTrash, FaEdit } from 'react-icons/fa';
 import './Dashboard.css';
 
 const DonorDashboard = () => {
   const { user, API_URL } = useAuth();
+  const { theme } = useTheme();
   const navigate = useNavigate();
   const [donations, setDonations] = useState([]);
   const [requests, setRequests] = useState([]);
@@ -33,10 +35,15 @@ const DonorDashboard = () => {
         axios.get(`${API_URL}/donations/my/list`),
         axios.get(`${API_URL}/requests/donor/my`)
       ]);
-      setDonations(donationsRes.data);
-      setRequests(requestsRes.data);
+      setDonations(donationsRes.data || []);
+      setRequests(requestsRes.data || []);
     } catch (error) {
       console.error('Error fetching data:', error);
+      setDonations([]);
+      setRequests([]);
+      if (error.response?.status === 401) {
+        alert('Session expired. Please login again.');
+      }
     } finally {
       setLoading(false);
     }
@@ -95,7 +102,7 @@ const DonorDashboard = () => {
   }
 
   return (
-    <div className="dashboard">
+    <div className={`dashboard ${theme}`}>
       <Header />
       <div className="dashboard-container">
         <div className="dashboard-header">
@@ -214,9 +221,23 @@ const DonorDashboard = () => {
                   {request.donorContact && (
                     <div className="contact-info">
                       <p><strong>Shared Contact:</strong></p>
-                      <p>{JSON.parse(request.donorContact).name}</p>
-                      <p>{JSON.parse(request.donorContact).email}</p>
-                      <p>{JSON.parse(request.donorContact).phone}</p>
+                      {(() => {
+                        try {
+                          const contact = typeof request.donorContact === 'string' 
+                            ? JSON.parse(request.donorContact) 
+                            : request.donorContact;
+                          return (
+                            <>
+                              <p>{contact?.name || '-'}</p>
+                              <p>{contact?.email || '-'}</p>
+                              <p>{contact?.phone || '-'}</p>
+                            </>
+                          );
+                        } catch (e) {
+                          console.error('Error parsing donorContact:', e);
+                          return <p>Contact information unavailable</p>;
+                        }
+                      })()}
                     </div>
                   )}
                   <div className="request-actions">

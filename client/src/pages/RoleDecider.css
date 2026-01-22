@@ -4,6 +4,10 @@
   padding-top: 100px;
 }
 
+.role-decider-page.dark {
+  background: linear-gradient(135deg, rgba(47, 8, 103, 0.6) 0%, rgba(147, 28, 28, 0.6) 100%);
+}
+
 .role-decider-container {
   max-width: 1200px;
   margin: 0 auto;
@@ -22,9 +26,20 @@
   margin-bottom: 15px;
 }
 
+.role-decider-page.dark .role-decider-header h1{
+  color: white;
+}
+.role-decider-page.dark .role-decider-header h2 {
+  color: white;
+}
+
 .role-decider-header p {
   font-size: 1.2rem;
   color: var(--text-gray);
+}
+
+.role-decider-page.dark .role-decider-header p {
+  color: rgba(255, 255, 255, 0.8);
 }
 
 .role-cards-container {
@@ -44,6 +59,11 @@
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
+}
+
+.role-decider-page.dark .role-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
 }
 
 .role-card::before {
@@ -79,6 +99,10 @@
   margin-bottom: 15px;
 }
 
+.role-decider-page.dark .role-card h2 {
+  color: white;
+}
+
 .role-card p {
   font-size: 1rem;
   color: var(--text-gray);
@@ -86,9 +110,13 @@
   margin-bottom: 30px;
 }
 
+.role-decider-page.dark .role-card p {
+  color: rgba(255, 255, 255, 0.8);
+}
+
 .role-button {
   padding: 15px 30px;
-  color: var(--text-light);
+  color: white;
   border-radius: 25px;
   font-size: 1.1rem;
   font-weight: 600;

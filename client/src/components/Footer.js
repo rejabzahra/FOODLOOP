@@ -1,72 +1,43 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { FaEnvelope, FaPhoneAlt, FaMapMarkedAlt } from 'react-icons/fa';
+import { FaEnvelope, FaPhoneAlt, FaInstagram, FaFacebook, FaLinkedin, FaUtensils } from 'react-icons/fa';
+import { useTheme } from '../context/ThemeContext';
 import './Footer.css';
 
 const Footer = () => {
+  const { theme } = useTheme();
   return (
-    <footer className="footer">
+    <footer className={`footer ${theme}`}>
       <div className="footer-container">
-        <div className="footer-content">
-          {/* About Section */}
-          <div className="footer-section">
-            <h3 className="footer-logo">🍴 FOOD LOOP</h3>
-            <p className="footer-description">
-              Connecting surplus food with those in need, creating a zero-waste circular food economy.
-            </p>
-            <p className="footer-tagline">Made with care for our community</p>
-          </div>
-
-          {/* Quick Links */}
-          <div className="footer-section">
-            <h4>Quick Links</h4>
-            <ul>
-              <li><Link to="/">For Restaurants</Link></li>
-              <li><Link to="/">For Volunteers</Link></li>
-              <li><Link to="/">How It Works</Link></li>
-              <li><Link to="/about">About Us</Link></li>
-            </ul>
-          </div>
-
-          {/* Support */}
-          <div className="footer-section">
-            <h4>Support</h4>
-            <ul>
-              <li><Link to="/contact">FAQ</Link></li>
-              <li><Link to="/">Guidelines</Link></li>
-              <li><Link to="/">Privacy Policy</Link></li>
-              <li><Link to="/">Terms of Service</Link></li>
-            </ul>
-          </div>
-
-          {/* Contact */}
-          <div className="footer-section">
-            <h4>Contact Us</h4>
-            <ul className="contact-list">
-              <li>
-                <a href="mailto:contact@foodloop.org" className="contact-link">
-                  <FaEnvelope className="contact-icon" />
-                  <span>contact@foodloop.org</span>
-                </a>
-              </li>
-              <li>
-                <a href="tel:+1234567890" className="contact-link">
-                  <FaPhoneAlt className="contact-icon" />
-                  <span>+1 (234) 567-890</span>
-                </a>
-              </li>
-              <li>
-                <a href="https://www.google.com/maps/search/123+Community+Street+City+State+12345" target="_blank" rel="noreferrer" className="contact-link contact-location">
-                  <FaMapMarkedAlt className="contact-icon" />
-                  <span>123 Community Street<br />City, State 12345</span>
-                </a>
-              </li>
-            </ul>
-          </div>
+        <div className="footer-links">
+          <Link to="/about">About Us</Link>
+          <Link to="/support">Support</Link>
+          <Link to="/company">About Company</Link>
+          <Link to="/contact">Contact</Link>
+          <Link to="/privacy">Privacy Policy</Link>
         </div>
-
+        <div className="footer-icons">
+          <a href="https://instagram.com" target="_blank" rel="noreferrer" className="instagram">
+            <span className="icon-wrapper"><FaInstagram /></span>
+          </a>
+          <a href="mailto:contact@foodloop.org" className="email">
+            <span className="icon-wrapper"><FaEnvelope /></span>
+          </a>
+          <a href="tel:+1234567890" className="phone">
+            <span className="icon-wrapper"><FaPhoneAlt /></span>
+          </a>
+          <a href="https://facebook.com" target="_blank" rel="noreferrer" className="facebook">
+            <span className="icon-wrapper"><FaFacebook /></span>
+          </a>
+          <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="linkedin">
+            <span className="icon-wrapper"><FaLinkedin /></span>
+          </a>
+        </div>
+        <div className="footer-brand">
+          <FaUtensils /> FOODLOOP
+        </div>
         <div className="footer-bottom">
-          <p>&copy; All rights reserved – FOOD LOOP</p>
+          <p>@ 2026 All rights reserved | FOODLOOP</p>
         </div>
       </div>
     </footer>

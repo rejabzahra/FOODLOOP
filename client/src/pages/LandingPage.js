@@ -69,7 +69,7 @@ const LandingPage = () => {
       </section>
 
       {/* What Food Loop Does */}
-      <Section title="What Our Platform Does">
+      <Section title="What Our Platform Does" titleClass="special-title">
         <div className="platform-grid">
           <FeatureCard
             icon={<FaHandHoldingHeart />}
@@ -127,7 +127,7 @@ const LandingPage = () => {
   );
 };
 
-const Section = ({ title, children, bgColor = 'white' }) => {
+const Section = ({ title, children, bgColor = 'white', titleClass = '' }) => {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-100px" });
   const controls = useAnimation();
@@ -155,7 +155,7 @@ const Section = ({ title, children, bgColor = 'white' }) => {
           }
         }}
       >
-        <h2 className="section-title">{title}</h2>
+        <h2 className={`section-title ${titleClass}`}>{title}</h2>
         {children}
       </motion.div>
     </section>

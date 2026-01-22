@@ -160,7 +160,12 @@ router.get('/donor/my', authenticateToken, authorizeRole('donor'), async (req, r
 
     requests.forEach(req => {
       if (req.donorContact) {
-        req.donorContact = JSON.parse(req.donorContact);
+        try {
+          req.donorContact = JSON.parse(req.donorContact);
+        } catch (e) {
+          console.error('Error parsing donorContact:', e);
+          req.donorContact = null;
+        }
       }
     });
 
@@ -187,7 +192,12 @@ router.get('/receiver/my', authenticateToken, authorizeRole('receiver'), async (
 
     requests.forEach(req => {
       if (req.donorContact) {
-        req.donorContact = JSON.parse(req.donorContact);
+        try {
+          req.donorContact = JSON.parse(req.donorContact);
+        } catch (e) {
+          console.error('Error parsing donorContact:', e);
+          req.donorContact = null;
+        }
       }
     });
 

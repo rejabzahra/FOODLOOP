@@ -2,11 +2,13 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { FaStore, FaHandHoldingHeart, FaUserShield } from 'react-icons/fa';
+import { useTheme } from '../context/ThemeContext';
 import Header from '../components/Header';
 import './RoleDecider.css';
 
 const RoleDecider = () => {
   const navigate = useNavigate();
+  const { theme } = useTheme();
 
   const roles = [
     {
@@ -37,7 +39,7 @@ const RoleDecider = () => {
   };
 
   return (
-    <div className="role-decider-page">
+    <div className={`role-decider-page ${theme}`}>
       <Header />
       <div className="role-decider-container">
         <motion.div

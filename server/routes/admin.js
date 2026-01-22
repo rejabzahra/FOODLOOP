@@ -137,4 +137,36 @@ router.put('/stats', async (req, res) => {
   }
 });
 
+// Delete user
+router.delete('/users/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    // Check if user exists
+    const user = await db.getAsync('SELECT * FROM users WHERE id = ?', [id]);
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    // Prevent deleting admin users
+    if (user.role === 'admin') {
+      return res.status(400).json({ error: 'Cannot delete admin users' });
+    }
+
+    // Delete user
+    await db.runAsync('DELETE FROM users WHERE id = ?', [id]);
+
+    // Log the action
+    await db.runAsync(
+      'INSERT INTO auditLogs (userId, action, resourceType, resourceId, details) VALUES (?, ?, ?, ?, ?)',
+      [req.user.id, 'DELETE', 'user', id, `Deleted user: ${user.email}`]
+    );
+
+    res.json({ message: 'User deleted successfully' });
+  } catch (error) {
+    console.error('Delete user error:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
 module.exports = router;

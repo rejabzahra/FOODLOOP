@@ -46,8 +46,12 @@
   border-radius: 50%;
   overflow: hidden;
   border: 3px solid var(--primary-color);
+  background-image: url("E:\Semester 3\SE\project\SEProject\images\founder1.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
-.creator-avatar img { width: 100%; height: 100%; object-fit: cover; }
+.creator-avatar img { width: 100%; height: 100%; object-fit: cover; display: none; }
 .creator-name { font-weight: 600; color: var(--text-dark); }
 .creator-role { font-size: 0.9rem; color: var(--text-gray); }
 
@@ -80,6 +84,10 @@
 
 .about-section.vision {
   background: linear-gradient(135deg, rgba(239,177,76,0.05) 0%, rgba(246,59,59,0.05) 100%);
+}
+
+.about-section.mission {
+  background: linear-gradient(135deg, rgba(239, 177, 76, 0.6) 0%, rgba(246, 59, 59, 0.6) 100%);
 }
 
 .about-section h2 {
@@ -191,12 +199,17 @@
   border-radius: 50%;
   overflow: hidden;
   border: 5px solid var(--primary-color);
+  background-image: url("E:\Semester 3\SE\project\SEProject\images\founder2.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .founder-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  display: none;
 }
 
 .founder-card h3 {
@@ -239,4 +252,16 @@
   .founders-grid {
     grid-template-columns: 1fr;
   }
+}
+
+.dark .step-detailed h3 {
+  color: black;
+}
+
+.dark .founder-card h3 {
+  color: black;
+}
+
+.dark .about-section.mission {
+  background: white;
 }

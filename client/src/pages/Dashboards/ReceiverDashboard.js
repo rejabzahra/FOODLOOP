@@ -2,12 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useAuth } from '../../context/AuthContext';
+import { useTheme } from '../../context/ThemeContext';
 import Header from '../../components/Header';
 import { FaSearch, FaMapMarkerAlt, FaClock } from 'react-icons/fa';
 import './Dashboard.css';
 
 const ReceiverDashboard = () => {
   const { user, API_URL } = useAuth();
+  const { theme } = useTheme();
   const navigate = useNavigate();
   const [donations, setDonations] = useState([]);
   const [myRequests, setMyRequests] = useState([]);
@@ -27,10 +29,15 @@ const ReceiverDashboard = () => {
         axios.get(`${API_URL}/donations?status=available`),
         axios.get(`${API_URL}/requests/receiver/my`)
       ]);
-      setDonations(donationsRes.data);
-      setMyRequests(requestsRes.data);
+      setDonations(donationsRes.data || []);
+      setMyRequests(requestsRes.data || []);
     } catch (error) {
       console.error('Error fetching data:', error);
+      setDonations([]);
+      setMyRequests([]);
+      if (error.response?.status === 401) {
+        alert('Session expired. Please login again.');
+      }
     } finally {
       setLoading(false);
     }
@@ -57,9 +64,10 @@ const ReceiverDashboard = () => {
       });
       setShowRequestModal(null);
       setRequestMessage('');
-      fetchData();
+      await fetchData();
       alert('Request sent successfully!');
     } catch (error) {
+      console.error('Error sending request:', error);
       alert('Error sending request: ' + (error.response?.data?.error || error.message));
     }
   };
@@ -69,7 +77,7 @@ const ReceiverDashboard = () => {
   }
 
   return (
-    <div className="dashboard">
+    <div className={`dashboard ${theme}`}>
       <Header />
       <div className="dashboard-container">
         <div className="dashboard-header">
@@ -145,9 +153,23 @@ const ReceiverDashboard = () => {
                   {request.donorContact && request.status === 'accepted' && (
                     <div className="contact-info">
                       <p><strong>Donor Contact:</strong></p>
-                      <p>{JSON.parse(request.donorContact).name}</p>
-                      <p>{JSON.parse(request.donorContact).email}</p>
-                      <p>{JSON.parse(request.donorContact).phone}</p>
+                      {(() => {
+                        try {
+                          const contact = typeof request.donorContact === 'string' 
+                            ? JSON.parse(request.donorContact) 
+                            : request.donorContact;
+                          return (
+                            <>
+                              <p>{contact?.name || '-'}</p>
+                              <p>{contact?.email || '-'}</p>
+                              <p>{contact?.phone || '-'}</p>
+                            </>
+                          );
+                        } catch (e) {
+                          console.error('Error parsing donorContact:', e);
+                          return <p>Contact information unavailable</p>;
+                        }
+                      })()}
                     </div>
                   )}
                 </div>

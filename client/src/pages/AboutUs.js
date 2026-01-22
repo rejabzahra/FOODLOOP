@@ -27,14 +27,14 @@ const AboutUs = () => {
           <div className="creators-row">
             <div className="creator-card">
               <div className="creator-avatar">
-                <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=200&h=200&fit=crop" alt="Alex Thompson" />
+                <img src="E:\Semester 3\SE\project\SEProject\images\founder1.png" alt="Rejab Zahra" />
               </div>
               <div className="creator-name">REJAB ZAHRA</div>
               <div className="creator-role">Frontend Developer</div>
             </div>
             <div className="creator-card">
               <div className="creator-avatar">
-                <img src="https://images.unsplash.com/photo-1545996124-1e8d4b8e6a5f?w=200&h=200&fit=crop" alt="Sarah Martinez" />
+                <img src="E:\Semester 3\SE\project\SEProject\images\founder2.png" alt="Umme Habiba" />
               </div>
               <div className="creator-name">UMME HABIBA</div>
               <div className="creator-role">Backend Developer</div>
@@ -48,7 +48,7 @@ const AboutUs = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <h1>About FOOD LOOP</h1>
+          <h1>About FOODLOOP</h1>
           <p className="hero-description">
             We are on a mission to eliminate food waste while feeding those in need,
             creating a sustainable circular economy that benefits everyone.
@@ -57,7 +57,7 @@ const AboutUs = () => {
 
         <motion.section
           ref={missionRef}
-          className="about-section"
+          className="about-section mission"
           initial={{ opacity: 0, x: -50 }}
           animate={missionInView ? { opacity: 1, x: 0 } : {}}
           transition={{ duration: 0.8 }}
@@ -142,17 +142,18 @@ const AboutUs = () => {
             <div className="founder-card">
               <div className="founder-image">
                 <img
-                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop"
+                  src="E:\Semester 3\SE\project\SEProject\images\founder1.png"
                   alt="Founder 1"
                 />
               </div>
               <h3>REJAB ZAHRA</h3>
               <p className="founder-role">Frontend Developer</p>
               <p className="founder-bio">
-                Alex has over 10 years of experience in sustainable business practices
-                and social entrepreneurship. With a passion for reducing food waste,
-                Alex envisioned FOOD LOOP as a solution to connect surplus food with
-                communities in need.
+                Rejab Zahra is a Frontend Developer skilled in designing 
+                and building user interfaces that are responsive, intuitive, 
+                and visually appealing. She focuses on creating seamless user 
+                experiences and translating design concepts into interactive, 
+                functional web applications.
               </p>
             </div>
             <div className="founder-card">
@@ -165,9 +166,11 @@ const AboutUs = () => {
               <h3>UMME HABIBA</h3>
               <p className="founder-role">Backend Developer</p>
               <p className="founder-bio">
-                Sarah is a tech innovator with expertise in building platforms that
-                create social impact. She leads the technical development of FOOD LOOP,
-                ensuring the platform is user-friendly, secure, and scalable.
+                Umme Habiba is a Backend Developer experienced in developing 
+                server-side logic and managing databases. She specializes in 
+                building secure and efficient APIs, ensuring smooth communication 
+                between servers and clients, and maintaining reliable application 
+                performance.
               </p>
             </div>
           </div>
